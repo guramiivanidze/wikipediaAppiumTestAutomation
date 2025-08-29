@@ -154,6 +154,7 @@ public class RegistrationPage extends BasePage {
         }
     }
 
+    // Click element helper method
     private void clickElement(WebElement element) {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -164,6 +165,7 @@ public class RegistrationPage extends BasePage {
         }
     }
 
+    // Wait for error message and validate its text
     private void waitForErrorAndValidate(String expectedError) {
         try {
             WebDriverWait errorWait = new WebDriverWait(driver, DEFAULT_TIMEOUT);

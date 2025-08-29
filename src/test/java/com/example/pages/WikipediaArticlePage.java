@@ -7,10 +7,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-/**
- * Wikipedia Article Page Object
- * Contains elements and methods for interacting with Wikipedia articles
- */
+
 public class WikipediaArticlePage extends BasePage {
     
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Java (programming language)\"]")
@@ -40,7 +37,7 @@ public class WikipediaArticlePage extends BasePage {
     @Step("Verify article page is displayed")
     public boolean isDisplayed() {
         try {
-            // Wait for either article content or title to be visible
+            
             boolean isDisplayed = wait.until(ExpectedConditions.or(
                 ExpectedConditions.visibilityOf(articleTitle),
                 ExpectedConditions.visibilityOf(articleContent),
@@ -102,12 +99,12 @@ public class WikipediaArticlePage extends BasePage {
     @Step("Check if article loaded successfully")
     public boolean isArticleLoadedSuccessfully() {
         try {
-            // Check if there's no error message and content is visible
+            
             boolean hasError = false;
             try {
                 hasError = errorMessage.isDisplayed();
             } catch (Exception e) {
-                // No error element found, which is good
+                logger.error("Error message not displayed, assuming no error", e);
             }
             
             boolean hasContent = isArticleContentDisplayed();

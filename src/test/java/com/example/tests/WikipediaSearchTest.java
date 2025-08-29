@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-
 @Epic("Wikipedia Mobile App")
 @Feature("Search and Navigation")
 public class WikipediaSearchTest extends BaseTest {
@@ -90,7 +89,8 @@ public class WikipediaSearchTest extends BaseTest {
                                 .goToSettingsPage();
                 mainPage.closeAlertIfPresent();
 
-                // TODO: ეს სქროლი და ლოგაუთზე კლიკმა გამაწამა ვერ გავიგე რა უნდა ხან მუშაობს ხან არა, საიდან როგორ არ მივუდექი არ შვება
+                // TODO: ეს სქროლი და ლოგაუთზე კლიკმა გამაწამა ვერ გავიგე რა უნდა ხან მუშაობს
+                // ხან არა, საიდან როგორ არ მივუდექი არ შვება
                 // უფრო მეტი დრო დამჭირდება ქასთუმ მეთოდების შესაქმნელად
 
                 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -132,7 +132,5 @@ public class WikipediaSearchTest extends BaseTest {
                                 .enterConfirmPassword("short")
                                 .submitRegistrationFormAndExpectError("The password must be at least 8 characters");
 
-
-                
         }
 }

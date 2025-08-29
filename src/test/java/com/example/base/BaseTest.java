@@ -21,17 +21,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.Duration;
 
-/**
- * Base test class containing common setup and teardown methods
- * Implements driver management and screenshot capture for failed tests
- */
+
 public class BaseTest {
     
     private static final Logger logger = LogManager.getLogger(BaseTest.class);
     
     protected AppiumDriver driver;
     
-    // Wikipedia app package and activity
     private static final String APP_PACKAGE = "org.wikipedia";
     private static final String APP_ACTIVITY = "org.wikipedia.main.MainActivity";
     private static final String APPIUM_SERVER_URL = "http://127.0.0.1:4723";
@@ -43,13 +39,11 @@ public class BaseTest {
         try {
             UiAutomator2Options options = new UiAutomator2Options();
             options.setPlatformName("Android");
-            options.setDeviceName("Android Device"); // This will use any available device
+            options.setDeviceName("Android Device");
             options.setAppPackage(APP_PACKAGE);
             options.setAppActivity(APP_ACTIVITY);
-            options.setNoReset(false); // Reset app state between tests
+            options.setNoReset(false);
             options.setNewCommandTimeout(Duration.ofSeconds(60));
-   
-            // Additional capabilities for better stability
             options.setCapability("autoGrantPermissions", true);
             options.setCapability("automationName", "UiAutomator2");
             
@@ -68,7 +62,8 @@ public class BaseTest {
             throw new RuntimeException("Failed to initialize driver", e);
         }
     }
-    
+
+    // Teardown method to quit driver and capture screenshot on failure
     @AfterMethod
     @Step("Close mobile driver and cleanup")
     public void tearDown(ITestResult result) {
@@ -87,21 +82,15 @@ public class BaseTest {
         }
     }
     
-    /**
-     * Captures screenshot and attaches it to Allure report
-     * @param testName Name of the failed test
-     */
+    // Screenshot capturing method
     @Attachment(value = "Screenshot", type = "image/png")
     public byte[] captureScreenshot(String testName) {
         try {
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            
-            // Also save to file system
             String screenshotDir = "target/screenshots";
             new File(screenshotDir).mkdirs();
             String filePath = screenshotDir + "/" + testName + "_" + System.currentTimeMillis() + ".png";
             Files.write(Paths.get(filePath), screenshot);
-            
             logger.info("Screenshot captured: " + filePath);
             return screenshot;
         } catch (Exception e) {
@@ -110,16 +99,4 @@ public class BaseTest {
         }
     }
     
-    /**
-     * Wait utility method
-     * @param milliseconds Time to wait in milliseconds
-     */
-    protected void waitFor(long milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            logger.warn("Wait interrupted", e);
-        }
-    }
 }

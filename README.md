@@ -95,10 +95,6 @@ mvn clean test -Dtest=WikipediaSearchTest
 mvn clean test -Dtest=WikipediaSearchTest#testSearchJavaProgramming
 ```
 
-### VS Code Task Execution
-
-Use the predefined VS Code task:
-- **Ctrl+Shift+P** → **Tasks: Run Task** → **Run Wikipedia Tests**
 
 ### TestNG XML Execution
 
@@ -120,13 +116,6 @@ mvn allure:serve
 mvn allure:report
 ```
 
-Reports include:
-- Test execution timeline
-- Step-by-step execution details
-- Screenshots for failed tests
-- Logs and attachments
-- Trend analysis
-- Environment information
 
 ### Surefire Reports
 
@@ -135,44 +124,6 @@ Standard TestNG reports are available at:
 target/surefire-reports/
 ```
 
-## 🧪 Test Cases
-
-### Test Case 1: Search Java Programming
-**Objective:** Verify search functionality and article navigation
-**Steps:**
-1. Launch Wikipedia app
-2. Skip onboarding if present
-3. Tap on search box
-4. Enter "Java programming" as search term
-5. Verify search results are displayed
-6. Click on first search result
-7. Verify article loads successfully
-8. Verify article content is displayed
-9. Scroll down to test interaction
-
-**Expected Results:**
-- Search results should be displayed
-- Article should load without errors
-- Article content should be visible
-- All assertions should pass
-
-### Test Case 2: Search and Navigate Back
-**Objective:** Verify search and back navigation workflow
-**Steps:**
-1. Launch Wikipedia app
-2. Skip onboarding if present
-3. Tap on search box
-4. Search for "Android" and select first result
-5. Verify article loads successfully
-6. Perform scroll interaction
-7. Navigate back to search results
-8. Verify search results are still displayed
-
-**Expected Results:**
-- Article navigation should work correctly
-- Back button should return to search results
-- Search results should persist after navigation
-- All assertions should pass
 
 ## 🔧 Configuration
 
