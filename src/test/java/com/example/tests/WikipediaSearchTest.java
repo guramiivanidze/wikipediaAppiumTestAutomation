@@ -75,6 +75,11 @@ public class WikipediaSearchTest extends BaseTest {
                                 .as("Wikipedia main page should be displayed")
                                 .isTrue();
 
+                boolean isLoggedIn = mainPage.checkContributionsContainerIsDisplayed();
+                if (isLoggedIn) {
+                        mainPage.logoutIfLoggedIn();
+                }
+
                 mainPage.clickMoreTab()
                                 .clickAccountContainer()
                                 .clickLoginBtnInCreatePage()
@@ -122,6 +127,10 @@ public class WikipediaSearchTest extends BaseTest {
                                 .as("Wikipedia main page should be displayed")
                                 .isTrue();
 
+                boolean isLoggedIn = mainPage.checkContributionsContainerIsDisplayed();
+                if (isLoggedIn) {
+                        mainPage.logoutIfLoggedIn();
+                }
                 mainPage.clickMoreTab()
                                 .clickAccountContainer();
 

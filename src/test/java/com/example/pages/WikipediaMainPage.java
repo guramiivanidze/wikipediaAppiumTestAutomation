@@ -5,8 +5,11 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WikipediaMainPage extends BasePage {
 
@@ -22,7 +25,7 @@ public class WikipediaMainPage extends BasePage {
     @AndroidFindBy(id = "android:id/button2")
     private WebElement cancelButton;
 
-    @AndroidFindBy(id="org.wikipedia:id/dialog_checkbox")
+    @AndroidFindBy(id = "org.wikipedia:id/dialog_checkbox")
     private WebElement dialogCheckbox;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='Search Wikipedia']")
@@ -63,6 +66,9 @@ public class WikipediaMainPage extends BasePage {
 
     @AndroidFindBy(id = "android:id/button1")
     private WebElement okButton;
+
+    @AndroidFindBy(id = "org.wikipedia:id/main_drawer_contribs_container")
+    private WebElement contributionsContainer;
 
     // Alternative locators in case the above don't work
     @AndroidFindBy(accessibility = "Search Wikipedia")
@@ -314,7 +320,8 @@ public class WikipediaMainPage extends BasePage {
             wait.until(ExpectedConditions.visibilityOf(usernameContainer));
             logger.info("User is logged in, Username container is displayed");
             try {
-                WebElement modalOverlay = driver.findElement(AppiumBy.xpath("//android.view.View[@clickable='true' and not(@resource-id)]"));
+                WebElement modalOverlay = driver
+                        .findElement(AppiumBy.xpath("//android.view.View[@clickable='true' and not(@resource-id)]"));
                 if (modalOverlay.isDisplayed()) {
                     modalOverlay.click();
                     logger.info("Clicked outside of modal to dismiss it");
@@ -337,6 +344,30 @@ public class WikipediaMainPage extends BasePage {
         return this;
     }
 
+    @Step("Check if Contributions container is displayed and back to main page")
+    public boolean checkContributionsContainerIsDisplayed() {
+        try {
+            this.clickMoreTab();
+            wait.until(ExpectedConditions.visibilityOf(contributionsContainer));
+            driver.navigate().back();
 
-    
+            logger.info("Contributions container is displayed");
+            return true;
+        } catch (Exception e) {
+            logger.info("Contributions container is not displayed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public void logoutIfLoggedIn() {
+        this.clickMoreTab();
+        this.goToSettingsPage();
+        this.closeAlertIfPresent();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement logoutBtn = this.scrollToText("Log out");
+        wait.until(ExpectedConditions.elementToBeClickable(logoutBtn)).click();
+        this.clickOkButtonIfPresent();
+        logger.info("Logged out successfully");
+
+    }
 }
