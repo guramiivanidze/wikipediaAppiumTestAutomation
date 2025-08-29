@@ -10,10 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-/**
- * Base page class containing common functionality for all page objects
- * Implements common methods and WebDriverWait initialization
- */
+// აქ ყველა გვერდის საერთო ფუნქციები იქნება 
 public abstract class BasePage {
     
     protected final Logger logger = LogManager.getLogger(this.getClass());
@@ -27,10 +24,7 @@ public abstract class BasePage {
         logger.info("Initialized page: " + this.getClass().getSimpleName());
     }
     
-    /**
-     * Wait for a specific amount of time
-     * @param milliseconds Time to wait
-     */
+    // ეს დალოდებისთვის  შეიძლებოდა სხვაგანაც ყოფილიყო მაგრამ აქ იყოს არაუჭირს
     @Step("Wait for {0} milliseconds")
     protected void waitFor(long milliseconds) {
         try {
@@ -41,9 +35,6 @@ public abstract class BasePage {
         }
     }
     
-    /**
-     * Check if the page is displayed
-     * @return true if page is displayed
-     */
+    // ეს იმითვის რო ყველა გვერდის ჩატვირთვა გადავამოწმოთ
     public abstract boolean isDisplayed();
 }

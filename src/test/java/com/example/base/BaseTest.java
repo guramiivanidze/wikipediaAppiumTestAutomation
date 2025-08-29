@@ -48,7 +48,7 @@ public class BaseTest {
             options.setAppActivity(APP_ACTIVITY);
             options.setNoReset(false); // Reset app state between tests
             options.setNewCommandTimeout(Duration.ofSeconds(60));
-            
+   
             // Additional capabilities for better stability
             options.setCapability("autoGrantPermissions", true);
             options.setCapability("automationName", "UiAutomator2");
