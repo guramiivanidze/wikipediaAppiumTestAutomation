@@ -51,13 +51,11 @@ src/
    Or start Appium Desktop/Studio
 
 4. **Connect Android Device:**
-   - Enable Developer Options and USB Debugging
-   - Connect device via USB or start emulator
+   - Start Android Studio Device
    - Verify connection: `adb devices`
 
 5. **Install Wikipedia App:**
-   - Download from Google Play Store, or
-   - Install APK manually: `adb install wikipedia.apk`
+   - Download from Google Play Store
 
 ## Running Tests
 
