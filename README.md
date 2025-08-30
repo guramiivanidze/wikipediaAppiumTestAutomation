@@ -1,19 +1,3 @@
-# Wikipedia Appium Test Automation
-
-A comprehensive mobile test automation framework for Wikipedia Android app using Appium, TestNG, and Allure reporting with Page Object Model (POM) design pattern.
-
-## 🏗️ Framework Architecture
-
-This framework follows industry best practices and includes:
-
-- **Page Object Model (POM)** - Organized page classes for better maintainability
-- **TestNG** - Test execution framework with annotations and parallel execution support
-- **Allure Reports** - Beautiful and comprehensive test reporting
-- **Log4j2** - Structured logging with multiple appenders
-- **AssertJ** - Fluent assertions for better readability
-- **Maven** - Dependency management and build automation
-
-## 📁 Project Structure
 
 ```
 src/
@@ -38,7 +22,6 @@ src/
 │       └── allure.properties              # Allure configuration
 ```
 
-## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -76,7 +59,7 @@ src/
    - Download from Google Play Store, or
    - Install APK manually: `adb install wikipedia.apk`
 
-## 🧪 Running Tests
+## Running Tests
 
 ### Command Line Execution
 
@@ -102,7 +85,7 @@ mvn clean test -Dtest=WikipediaSearchTest#testSearchJavaProgramming
 mvn clean test -DsuiteXmlFile=src/test/resources/testng.xml
 ```
 
-## 📊 Test Reports
+## Test Reports
 
 ### Allure Reports
 
@@ -125,7 +108,7 @@ target/surefire-reports/
 ```
 
 
-## 🔧 Configuration
+## Configuration
 
 ### Appium Configuration
 
@@ -138,20 +121,6 @@ options.setAppActivity("org.wikipedia.main.MainActivity");
 options.setNoReset(false);
 options.setNewCommandTimeout(Duration.ofSeconds(60));
 ```
-
-### TestNG Configuration
-
-Configured in `testng.xml`:
-- Test suite organization
-- Class execution order
-- Parallel execution settings
-
-### Logging Configuration
-
-Configured in `log4j2.xml`:
-- Console and file logging
-- Rolling file appender
-- Different log levels for different packages
 
 ## 🛠️ Troubleshooting
 
@@ -188,7 +157,7 @@ Enable debug logging by modifying `log4j2.xml`:
 ```
 
 
-## 📈 Extending the Framework
+## Extending the Framework
 
 ### Adding New Tests
 1. Create new test methods in existing test classes
