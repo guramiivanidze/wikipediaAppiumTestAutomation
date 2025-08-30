@@ -35,7 +35,7 @@ src/
 
 1. **Clone the repository:**
    ```bash
-   git clone [<repository-url>](https://github.com/guramiivanidze/wikipediaAppiumTestAutomation.git)
+   git clone https://github.com/guramiivanidze/wikipediaAppiumTestAutomation.git
    cd wikipediaAppiumTestAutomation
    ```
 
